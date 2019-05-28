@@ -29,5 +29,9 @@ module Mongouser
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.mongoid.logger = Logger.new($stdout, :warn)
+    # config.mongoid.persist_in_safe_mode = true
+    config.mongoid.preload_models = false
   end
 end
