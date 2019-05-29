@@ -78,8 +78,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :address).merge(
       birthday:
         [params[:user]['birthday(1i)'],
-          params[:user]['birthday(2i)'],
-          params[:user]['birthday(3i)']]
+         params[:user]['birthday(2i)'],
+         params[:user]['birthday(3i)']]
     )
   end
 end
