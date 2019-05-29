@@ -33,6 +33,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Added application gems
 gem 'mongoid', '~> 6.2.0'
+gem 'pry'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
