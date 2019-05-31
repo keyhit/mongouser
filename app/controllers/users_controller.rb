@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    #binding.pry
     respond_to do |format|
       format.html
       format.json 

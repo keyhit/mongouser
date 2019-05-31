@@ -17,11 +17,10 @@
 //= require_tree .
 
 $(document).ready(function() {
-    $("#users_list").dataTable( {
-        retrieve: true,
-        paging: true,
-        searching: true,
-        serverSide: true,
+var actions = "<td><a href='#'>Show</a><td>"
+
+    var table = $("#users_list").dataTable( {
+        pagingType: "full_numbers",
         processing: true,
         ajax: {
             url:"/users.json",
@@ -31,9 +30,8 @@ $(document).ready(function() {
             { data: 'first_name' },
             { data: 'last_name' },
             { data: 'birthday' },
-            { data: 'address' }
-
+            { data: 'address' },
+            {"defaultContent": actions }
         ]
     } );
-
 } );
