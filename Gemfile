@@ -32,9 +32,13 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Added application gems
+gem 'colored', '~> 1.2'
 gem 'mongoid', '~> 6.2.0'
 gem 'pry'
-gem 'colored', '~> 1.2'
+gem 'ajax-datatables-rails'
+gem 'jquery-datatables'
+gem 'jquery-rails'
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -12,4 +12,28 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require jquery
+//= require datatables
 //= require_tree .
+
+$(document).ready(function() {
+    $("#users_list").dataTable( {
+        retrieve: true,
+        paging: true,
+        searching: true,
+        serverSide: true,
+        processing: true,
+        ajax: {
+            url:"/users.json",
+            dataSrc:""
+            },
+        columns: [
+            { data: 'first_name' },
+            { data: 'last_name' },
+            { data: 'birthday' },
+            { data: 'address' }
+
+        ]
+    } );
+
+} );
