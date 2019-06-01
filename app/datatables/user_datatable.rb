@@ -1,22 +1,30 @@
 class UserDatatable < ApplicationDatatable
 
   def self.test
-    first_user = User.first
+    # first_user = User.first
     
-    row1 = [first_user.first_name,first_user.last_name,first_user.birthday,first_user.address,"<b>aaaaa</b>"]
-    row2 = ["bbbbb","bbbbb","bbbbb","bbbbb","bbbbb"]
-    row3 = ["ccccc","ccccc","ccccc","ccccc","ccccc"]
-    a = { "data"=> [
-      row1,
-      row2,
-      row3]
-    }
-    j = a.to_json
-    j
+    # row1 = [first_user.first_name,first_user.last_name,first_user.birthday,first_user.address,"<b>aaaaa</b>"]
+    # row2 = ["bbbbb","bbbbb","bbbbb","bbbbb","bbbbb"]
+    # row3 = ["ccccc","ccccc","ccccc","ccccc","ccccc"]
+    # a = { "data"=> [
+    #   row1,
+    #   row2,
+    #   row3]
+    # }
+    # j = a.to_json
+    # j
     
-    # @users = User.all
+    @users = User.all
 
+    multi_level_array = []
 
+    @users.each do |user|
+      multi_level_array << [user.first_name, user.last_name, user.birthday, user.address,"<b>aaaaa</b>"]
+    end
+
+    data_rows = { "data" => multi_level_array }
+
+    data_rows.to_json
 
 
     # binding.pry
