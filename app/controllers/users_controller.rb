@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         render json: 
         # binding.pry
         # UserDatatable.test(params)
-        UserDatatable.data_params(params)
+        UserDatatable.data(params)
       end
     end
   end
