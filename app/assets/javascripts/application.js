@@ -41,17 +41,15 @@
 $(document).ready(function() {
      
         $("#users_list").dataTable( {
-            // "processing": true,
+            "processing": true,
             "serverSide": true,
-            retrieve: true,
-            // "filter": false,
-            // "orderMulti": false,
-            // "stateSave": true,
             "ajax": {
-                "url": "/users.json",
+                "url": "/users",
                 "dataSrc": "data",
-                "datatype": "json"
+                "datatype": "json",
+                
             }
+
         } );
     } );
     

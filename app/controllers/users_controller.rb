@@ -9,8 +9,9 @@ class UsersController < ApplicationController
       format.html
       format.json do 
         render json: 
-        #binding.pry
-        UserDatatable.test
+        # binding.pry
+        # UserDatatable.test(params)
+        UserDatatable.data_params(params)
       end
     end
   end

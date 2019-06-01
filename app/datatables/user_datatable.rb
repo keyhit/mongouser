@@ -1,8 +1,8 @@
 class UserDatatable < ApplicationDatatable
 
-  def self.test
+  def self.test(params)
+    # Explanation rows and columns building 
     # first_user = User.first
-    
     # row1 = [first_user.first_name,first_user.last_name,first_user.birthday,first_user.address,"<b>aaaaa</b>"]
     # row2 = ["bbbbb","bbbbb","bbbbb","bbbbb","bbbbb"]
     # row3 = ["ccccc","ccccc","ccccc","ccccc","ccccc"]
@@ -13,25 +13,45 @@ class UserDatatable < ApplicationDatatable
     # }
     # j = a.to_json
     # j
-    
+
     @users = User.all
 
     multi_level_array = []
 
     @users.each do |user|
-      multi_level_array << [user.first_name, user.last_name, user.birthday, user.address,"<b>aaaaa</b>"]
+      multi_level_array << [
+        user.first_name,
+        user.last_name,
+        user.birthday,
+        user.address,
+        "<b><a href="">Actions</a></b>"]
     end
 
     data_rows = { "data" => multi_level_array }
 
     data_rows.to_json
 
-
     # binding.pry
-    
+  end
 
-  #  {"draw"=>"1", "columns"=>{"0"=>{"data"=>"#{first_user.first_name}", "name"=>"rtyrty", "searchable"=>"true", "orderable"=>"true", "search"=>{"value"=>"", "regex"=>"false"}}}, "order"=>{"0"=>{"column"=>"0", "dir"=>"asc"}}, "start"=>"0", "length"=>"10", "search"=>{"value"=>"", "regex"=>"false"}, "_"=>"1559332895762"}
+  def self.data_params(params)
+    @users = User.limit(params[:length])
 
+    multi_level_array = []
+
+    @users.each do |user|
+      multi_level_array << [
+        user.first_name,
+        user.last_name,
+        user.birthday,
+        user.address,
+        "<b><a href="">Actions</a></b>"]
+    end
+
+    data_rows = { "data" => multi_level_array }
+
+    data_rows.to_json
+  
   end
 
   # def view_columns
