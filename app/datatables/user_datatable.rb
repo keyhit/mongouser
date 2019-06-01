@@ -1,4 +1,4 @@
-class UserDatatable < ApplicationDatatable
+class UserDatatable
 
   def self.test(params)
     # Explanation rows and columns building 
@@ -31,27 +31,33 @@ class UserDatatable < ApplicationDatatable
 
     data_rows.to_json
 
-    # binding.pry
   end
 
   def self.data_params(params)
-    @users = User.limit(params[:length])
+    number_page = (params[:start].to_i / 10) + 1
+    records_per_page = 10
+
+    users = User.all
+    paginated_users = users.page(number_page).per(records_per_page)
 
     multi_level_array = []
-
-    @users.each do |user|
+    paginated_users.each do |user|
       multi_level_array << [
+        user.id,
         user.first_name,
         user.last_name,
         user.birthday,
         user.address,
-        "<b><a href="">Actions</a></b>"]
+        '<b><a href="">Actions</a></b>']
     end
 
-    data_rows = { "data" => multi_level_array }
-
-    data_rows.to_json
-  
+    result =
+      {
+        recordsTotal: users.to_a.size,
+        recordsFiltered: users.to_a.size,
+        data:  multi_level_array
+      }
+      result.to_hash
   end
 
   # def view_columns

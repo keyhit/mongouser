@@ -39,17 +39,15 @@
 
 
 $(document).ready(function() {
-     
-        $("#users_list").dataTable( {
-            "processing": true,
-            "serverSide": true,
-            "ajax": {
-                "url": "/users",
-                "dataSrc": "data",
-                "datatype": "json",
-                
-            }
-
-        } );
+    $("#users_list").dataTable( {
+        "processing": true,
+        "serverSide": true,
+        "lengthChange": false,
+        "pagingType": "full_numbers",
+        "ajax": {
+            "url": "/users",
+            "dataSrc": "data"
+        }
     } );
+ } );
     

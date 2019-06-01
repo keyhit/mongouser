@@ -1,8 +1,8 @@
-counter = 0
+counter = 1
 
-20.times do
+27.times do
   new_user = User.new(
-    first_name: 'Viacheslav',
+    first_name: "Viacheslav#{counter}",
     last_name: 'Karpenko',
     birthday: '1984-02-11',
     address: 'Cherkassy city'
