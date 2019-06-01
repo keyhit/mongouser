@@ -16,22 +16,42 @@
 //= require datatables
 //= require_tree .
 
-$(document).ready(function() {
-var actions = "<td><a href='#'>Show</a><td>"
+//$(document).ready(function() {
+//var actions = "<td><a href='#'>Show</a><td>"
+//
+//    var table = $("#users_list").dataTable( {
+//        pagingType: "full_numbers",
+//        processing: true,
+//        ajax: {
+//            url:"/users.json",
+//            dataSrc:""
+//            },
+//        columns: [
+//            { data: 'first_name' },
+//            { data: 'last_name' },
+//            { data: 'birthday' },
+//            { data: 'address' },
+//            {"defaultContent": actions }
+//        ]
+//    } );
+//} );
 
-    var table = $("#users_list").dataTable( {
-        pagingType: "full_numbers",
-        processing: true,
-        ajax: {
-            url:"/users.json",
-            dataSrc:""
-            },
-        columns: [
-            { data: 'first_name' },
-            { data: 'last_name' },
-            { data: 'birthday' },
-            { data: 'address' },
-            {"defaultContent": actions }
-        ]
+
+
+$(document).ready(function() {
+     
+        $("#users_list").dataTable( {
+            // "processing": true,
+            "serverSide": true,
+            retrieve: true,
+            // "filter": false,
+            // "orderMulti": false,
+            // "stateSave": true,
+            "ajax": {
+                "url": "/users.json",
+                "dataSrc": "data",
+                "datatype": "json"
+            }
+        } );
     } );
-} );
+    

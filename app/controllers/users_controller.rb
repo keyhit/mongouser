@@ -4,11 +4,14 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-    #binding.pry
+    #@users = User.all
     respond_to do |format|
       format.html
-      format.json 
+      format.json do 
+        render json: 
+        #binding.pry
+        UserDatatable.test
+      end
     end
   end
 
