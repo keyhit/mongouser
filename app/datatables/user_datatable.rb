@@ -4,14 +4,16 @@ class UserDatatable
     records_per_page = 10
     search_value = params["search"]["value"]
     sort_value = params['order']['0']['dir']
-    column_key = params['order']['0']['column'].to_i
+    column_key = params['order']['0']['column'].to_i + 1
     column_value_by_key = User.fields.keys[column_key]
 
-    if  search_value.present?
-      users = User.search(search_value).order_by(column_value_by_key => sort_value)
+    if  search_value
+      users = User.search(search_value).order_by(column_value_by_key => sort_value.to_s)
     else 
-      users = User.all.order_by(column_value_by_key => sort_value)
+      users = User.all.order_by(column_value_by_key => sort_value.to_s)
     end
+
+# binding.pry
 
     paginated_users = users.page(number_page).per(records_per_page)
 
