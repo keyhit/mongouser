@@ -14,14 +14,14 @@ class User
                       length: { minimum: 1, maximum: 60 }
 
   def self.search(search_value)
+    # binding.pry
     if search_value
       any_of(
-        { first_name: /#{search_value.downcase}/i },
-        { last_name: /#{search_value.downcase}/i },
-        # { birthday: /#{search_value}/},
-        { address: /#{search_value.downcase}/i }
+        { first_name: /#{search_value.downcase}/ },
+        { last_name: /#{search_value.downcase}/ },
+        # { birthday: /#{Date.parse search_value}/},
+        { address: /#{search_value.downcase}/ }
        )
     end
   end
 end
-5457427

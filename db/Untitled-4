@@ -22,3 +22,6 @@ Bregex%5D=false
 Займаємося відновлювальними роботами.
 Дякуємо за порозуміння
 
+
+        "<b>#{<%= link_to 'Show', user %> } | <%= link_to 'Edit', edit_user_path(user) | <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></b>"] # I will edited this last column later
+
