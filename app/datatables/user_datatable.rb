@@ -2,25 +2,31 @@ class UserDatatable
   def self.data(params)
     number_page = (params[:start].to_i / 10) + 1
     records_per_page = 10
-
     search_value = params["search"]["value"]
+    sort_value = params['order']['0']['dir']
+    
+    #(067-209-09-53)
+    
+    column_key = params['order']['0']['column'].to_i
+
+    if column_key
+      column_value_by_key = User.fields.keys[column_key]
+    else
+      column_value_by_key = 1
+    end
+
+    #binding.pry
     if  search_value.present?
       print "search Value #{ search_value}".red
-      users = User.search(search_value)
-
-      # u_first_name = User.where( { first_name: /.*#{search_value}.*/ } )
-      # u_last_name = User.where( { last_name: /.*#{search_value}.*/ } )
-      # users = users_first_name + users_last_name
-    
-      
+      users = User.search(search_value).order_by( column_value_by_key => "#{sort_value}")
+      # binding.pry
     else 
-      users = User.all
+      users = User.all.order_by( column_value_by_key => "#{sort_value}")
+
     end
-    
-    
-    paginated_users = users.page(number_page).per(records_per_page)
-    
-    #  binding.pry
+   paginated_users = users.page(number_page).per(records_per_page)
+
+   #  binding.pry
 
     multi_level_array = []
     paginated_users.each do |user|

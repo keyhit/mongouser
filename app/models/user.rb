@@ -18,7 +18,7 @@ class User
       any_of(
         { first_name: /#{search_value.downcase}/i },
         { last_name: /#{search_value.downcase}/i },
-        { birthday: /Date.parse("#{search_value}"")/i },
+        # { birthday: /#{search_value}/},
         { address: /#{search_value.downcase}/i }
        )
     end
