@@ -8,17 +8,19 @@ class User
   field :address, type: String
 
   validates :first_name, presence: true,
-                        length: {minimum:1, maximum:20}
-  
+                         length: { minimum: 1, maximum: 20 }
   validates :last_name, presence: true,
-                        length: {minimum:1, maximum:20}
-
+                        length: { minimum: 1, maximum: 20 }
   validates :address, presence: true,
-                        length: {minimum:1, maximum:60}
+                      length: { minimum: 1, maximum: 60 }
 
   def self.search(search_value)
     if search_value
-      any_of( { first_name: /#{search_value.downcase}/i}, { last_name: /#{search_value.downcase}/i}, { address: /#{search_value.downcase}/i})
+      any_of(
+        { first_name: /#{search_value.downcase}/i },
+        { last_name: /#{search_value.downcase}/i },
+        { address: /#{search_value.downcase}/i }
+       )
     end
   end
 end
