@@ -9,6 +9,20 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <nav class="navbar navbar-dark bg-dark">
+       <a class="navbar-brand" href="https://github.com/keyhit/mongouser">My users datatables in github</a>
+    </nav>
+
+  <div class="container">
+    <% flash.each do |type, msg| %>
+      <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
+        <%= msg %>
+        <button class="close" data-dismiss="alert">x</button>
+      </div>
+    <% end %> 
+  </div>
+  <div class="container">
     <%= yield %>
+  </div>
   </body>
 </html>

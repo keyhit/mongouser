@@ -17,10 +17,10 @@ class User
     # binding.pry
     if search_value
       any_of(
-        { first_name: /#{search_value.downcase}/ },
-        { last_name: /#{search_value.downcase}/ },
+        { first_name: /#{search_value}/i },
+        { last_name: /#{search_value}/i },
         # { birthday: /#{Date.parse search_value}/},
-        { address: /#{search_value.downcase}/ }
+        { address: /#{search_value}/i }
        )
     end
   end

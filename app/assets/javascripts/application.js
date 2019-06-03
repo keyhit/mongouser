@@ -14,6 +14,8 @@
 //= require turbolinks
 //= require jquery
 //= require datatables
+//= require popper
+//= require bootstrap-sprockets
 //= require_tree .
 
 $(document).ready(function() {

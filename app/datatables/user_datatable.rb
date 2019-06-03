@@ -17,17 +17,17 @@ class UserDatatable
 
     multi_level_array = []
     paginated_users.each do |user|
-    multi_level_array << [
-      user.first_name,
-      user.last_name,
-      user.birthday,
-      user.address,
-      "<b><a href='users/#{user.id}'>Show</a> |
-        <a href='users/#{user.id}/edit'>Edit</a> |
-        <a href='users/#{user.id}'
-        rel='nofollow'
-        data-method='delete'
-        data-confirm='Are you sure?'>Delete</a> </b>"]
+      multi_level_array << [
+        user.first_name,
+        user.last_name,
+        user.birthday,
+        user.address,
+        "<b><a href='users/#{user.id}'>Show</a> |
+          <a href='users/#{user.id}/edit'>Edit</a> |
+          <a href='users/#{user.id}'
+          rel='nofollow'
+          data-method='delete'
+          data-confirm='Are you sure?'>Delete</a> </b>"]
     end
 
     {
