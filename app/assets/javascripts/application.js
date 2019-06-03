@@ -17,7 +17,7 @@
 //= require_tree .
 
 $(document).ready(function() {
-    $("#users_list").dataTable( {
+    var table = $("#users_list").dataTable( {
         "processing": true,
         "serverSide": true,
         "lengthChange": false,
@@ -27,5 +27,8 @@ $(document).ready(function() {
             "dataSrc": "data"
         }
     } );
+
+
+   
  } );
     
