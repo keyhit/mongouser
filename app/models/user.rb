@@ -1,7 +1,6 @@
 class User
   include Mongoid::Document
   include Mongoid::Attributes::Dynamic
-  # include Mongoid::MultiParameterAttributes
   field :first_name, type: String
   field :last_name, type: String
   field :birthday, type: Date
@@ -19,9 +18,10 @@ class User
       any_of(
         { first_name: /#{search_value.downcase}/i },
         { last_name: /#{search_value.downcase}/i },
+        { birthday: /Date.parse("#{search_value}"")/i },
         { address: /#{search_value.downcase}/i }
        )
     end
   end
 end
-#{ birthday: /#{search_value.downcase}/i}
+5457427
