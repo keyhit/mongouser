@@ -12,4 +12,22 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require jquery
+//= require datatables
+//= require popper
+//= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function() {
+    $("#users_list").dataTable( {
+        "processing": true,
+        "serverSide": true,
+        "lengthChange": false,
+        "pagingType": "full_numbers",
+        "ajax": {
+            "url": "/users",
+            "dataSrc": "data"
+        }
+    } );
+ } );
+    

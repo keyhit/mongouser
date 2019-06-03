@@ -31,10 +31,16 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-# Added application gems
+# Added application gems 
+gem 'colored', '~> 1.2'
 gem 'mongoid', '~> 6.2.0'
 gem 'pry'
-gem 'colored', '~> 1.2'
+gem 'ajax-datatables-rails'
+gem 'jquery-datatables'
+gem 'jquery-rails'
+gem 'kaminari-mongoid'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'bootstrap', '~> 4.3.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

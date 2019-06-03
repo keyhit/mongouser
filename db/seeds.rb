@@ -1,11 +1,35 @@
-counter = 0
+first_name = %w[viacheslav Sergey Oleg Illia Olaksandr 
+                John Wiliam Kruso Goliaf Igor Vlad Ruslan 
+                Oleksiy Roman Kyryl viacheslav Sergey Oleg 
+                Illia Olaksandr John Wiliam Kruso Goliaf 
+                Igor Vlad Ruslan Kyryl]
 
-20.times do
+last_name = %w[karpenko Olefir Vinnik Sotnik Bohdan Sothik
+               Glushenko karpenko Olefir Vinnik Sotnik Bohdan
+               Sothik Glushenko karpenko Olefir Vinnik Sotnik
+               Bohdan Sothik Glushenko karpenko Olefir Vinnik
+               Sotnik Bohdan Sothik Glushenko]
+
+birthday = %w[1984-02-11 1984-02-11 1984-02-11 1984-02-11 1984-02-11
+              1984-02-11 1984-02-11 1984-02-11 1984-02-11 1984-02-11 
+              1984-02-11 1984-02-11 1984-02-11 1984-02-11 1984-02-11 
+              1984-02-11 2005-11-12 2005-11-12 2005-11-12 2005-11-12 
+              2005-11-12 2018-07-18 2018-07-18 2018-07-18 2018-07-18 
+              2018-07-18 2018-07-18 2018-07-18 1984-02-11]
+
+
+address = %w[Kyiv Kyiv Kyiv Cherkassy Cherkassy Cherkassy Cherkassy
+             Cherkassy NY Cherkassy Kyiv Cherkassy Paris NY Vinnitsia
+             Kyiv London Paris NY Vinnitsia Kyiv London Paris NY
+             Vinnitsia Kyiv Cherkassy Cherkassy]
+
+counter = 0
+29.times do
   new_user = User.new(
-    first_name: 'Viacheslav',
-    last_name: 'Karpenko',
-    birthday: '1984-02-11',
-    address: 'Cherkassy city'
+    first_name: first_name[counter],
+    last_name: last_name[counter],
+    birthday:  Date.parse("#{birthday[counter]}"),
+    address: address[counter]
   )
 
   if new_user.save
