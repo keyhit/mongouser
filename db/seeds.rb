@@ -10,12 +10,12 @@ last_name = %w[karpenko Olefir Vinnik Sotnik Bohdan Sothik
                Bohdan Sothik Glushenko karpenko Olefir Vinnik
                Sotnik Bohdan Sothik Glushenko]
 
-birthday = %w[1984-02-11 1984-02-11 1984-02-11 1984-02-11 1984-02-11
-              1984-02-11 1984-02-11 1984-02-11 1984-02-11 1984-02-11 
-              1984-02-11 1984-02-11 1984-02-11 1984-02-11 1984-02-11 
-              1984-02-11 2005-11-12 2005-11-12 2005-11-12 2005-11-12 
-              2005-11-12 2018-07-18 2018-07-18 2018-07-18 2018-07-18 
-              2018-07-18 2018-07-18 2018-07-18 1984-02-11]
+birthday = %w[02.11.1984 11.02.1984 02.11.1984 02.11.1984 02.11.1984
+              02.11.1984 02.11.1984 02.11.1984 02.11.1984 02.11.1984
+              02.11.1984 02.11.1984 02.11.1984 02.11.1984 02.11.1984 
+              02.11.1984 11.12.2005 11.12.2005 11.12.2005 11.12.2005 
+              11.12.2005 07.18.2018 07.18.2018 07.18.2018 07.18.2018 
+              07.18.2018 07.18.2018 07.18.2018 02.11.1984]
 
 
 address = %w[Kyiv Kyiv Kyiv Cherkassy Cherkassy Cherkassy Cherkassy
@@ -28,7 +28,7 @@ counter = 0
   new_user = User.new(
     first_name: first_name[counter],
     last_name: last_name[counter],
-    birthday:  Date.parse("#{birthday[counter]}"),
+    birthday:  birthday[counter],
     address: address[counter]
   )
 
