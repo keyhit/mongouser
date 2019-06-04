@@ -10,13 +10,12 @@ class User
                          length: { minimum: 1, maximum: 20 }
   validates :last_name, presence: true,
                         length: { minimum: 1, maximum: 20 }
- validates :birthday, presence: true,
-                        length: { is: 10 }
+  validates :birthday, presence: true,
+                       length: { is: 10 }
   validates :address, presence: true,
                       length: { minimum: 1, maximum: 60 }
 
   def self.search(search_value)
-    # binding.pry
     if search_value
       any_of(
         { first_name: /#{search_value}/i },
