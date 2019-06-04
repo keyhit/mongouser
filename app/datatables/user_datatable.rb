@@ -2,7 +2,7 @@ class UserDatatable
   def self.data(params)
     number_page = (params[:start].to_i / 10) + 1
     records_per_page = 10
-    search_value = params["search"]["value"]
+    search_value = params['search']['value']
     sort_value = params['order']['0']['dir']
     column_key = params['order']['0']['column'].to_i + 1
     column_value_by_key = User.fields.keys[column_key]
