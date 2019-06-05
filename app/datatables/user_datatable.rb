@@ -1,41 +1,52 @@
 class UserDatatable
-  def self.data(params)
-    number_page = (params[:start].to_i / 10) + 1
-    records_per_page = 10
-    search_value = params['search']['value']
-    sort_value = params['order']['0']['dir']
-    column_key = params['order']['0']['column'].to_i + 1
-    column_value_by_key = User.fields.keys[column_key]
+  RECORDS_PER_PAGE = 10
+  attr_accessor :params
 
+  def number_page
+    @params[:start].to_i / 10
+  end
+
+  def search_value
+    @params['search']['value']
+  end
+
+  def sort_value
+    @params['order']['0']['dir']
+  end
+
+  def column_key
+    @params['order']['0']['column'].to_i+1
+  end
+
+  def column_value_by_key
+    User.fields.keys[column_key]
+  end
+
+  def users
     if  search_value
-      users = User.search(search_value).order_by(column_value_by_key => sort_value.to_s)
-    else 
-      users = User.all.order_by(column_value_by_key => sort_value.to_s)
+      User.search(search_value).order_by(column_value_by_key => sort_value)
+    else
+      User.all.order_by(column_value_by_key => sort_value)
     end
+  end
 
-# binding.pry
+  def paginated_users
+    users.page(number_page).per(RECORDS_PER_PAGE)
+  end
 
-    paginated_users = users.page(number_page).per(records_per_page)
-
-    multi_level_array = []
+  def ready_hash
+    @multi_level_array = []
     paginated_users.each do |user|
-      multi_level_array << [
+      @multi_level_array << [
         user.first_name,
         user.last_name,
         user.birthday,
-        user.address,
-        "<b><a href='users/#{user.id}'>Show</a> |
-          <a href='users/#{user.id}/edit'>Edit</a> |
-          <a href='users/#{user.id}'
-          rel='nofollow'
-          data-method='delete'
-          data-confirm='Are you sure?'>Delete</a> </b>"]
+        user.address]
     end
-
     {
       recordsTotal: users.to_a.size,
       recordsFiltered: users.to_a.size,
-      data:  multi_level_array
+      data: @multi_level_array
     }
   end
 end

@@ -12,11 +12,10 @@ last_name = %w[karpenko Olefir Vinnik Sotnik Bohdan Sothik
 
 birthday = %w[02.11.1984 11.02.1984 02.11.1984 02.11.1984 02.11.1984
               02.11.1984 02.11.1984 02.11.1984 02.11.1984 02.11.1984
-              02.11.1984 02.11.1984 02.11.1984 02.11.1984 02.11.1984 
-              02.11.1984 11.12.2005 11.12.2005 11.12.2005 11.12.2005 
+              02.11.1984 02.11.1984 02.11.1984 02.11.1984 02.11.1984
+              02.11.1984 11.12.2005 11.12.2005 11.12.2005 11.12.2005
               11.12.2005 07.18.2018 07.18.2018 07.18.2018 07.18.2018 
               07.18.2018 07.18.2018 07.18.2018 02.11.1984]
-
 
 address = %w[Kyiv Kyiv Kyiv Cherkassy Cherkassy Cherkassy Cherkassy
              Cherkassy NY Cherkassy Kyiv Cherkassy Paris NY Vinnitsia
@@ -24,7 +23,7 @@ address = %w[Kyiv Kyiv Kyiv Cherkassy Cherkassy Cherkassy Cherkassy
              Vinnitsia Kyiv Cherkassy Cherkassy]
 
 counter = 0
-29.times do
+28.times do
   new_user = User.new(
     first_name: first_name[counter],
     last_name: last_name[counter],
