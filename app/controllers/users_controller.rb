@@ -5,8 +5,6 @@ class UsersController < ApplicationController
       format.json do
         table = UserDatatable.new
         table.params = params
-        # table.debug
-        # puts "table.ready_hash - #{table.ready_hash}".blue
         render json: table.ready_hash
       end
     end
