@@ -4,14 +4,18 @@ class A
   end
 
   def m1
-    puts @data
-    puts m2
+    @data + 1 
+    
   end
 
   def m2
-    @data2 = @data + 12
+    m1 + 1
+  end
+
+  def m3
+    puts m2
   end
 end
 
-nova = A.new(12)
-nova.m1
+ A.new(12)
+

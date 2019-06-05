@@ -1,0 +1,73 @@
+class UserDatatable
+  def initialize(params)
+    @params = params
+  end
+  
+  def data
+    number_page = (@params[:start].to_i / 10) + 1
+    records_per_page = 10
+    search_value = @params["search"]["value"]
+    sort_value = @params['order']['0']['dir']
+    column_key = @params['order']['0']['column'].to_i
+    column_value_by_key = User.fields.keys[column_key]
+
+    if  search_value.present?
+      users = User.search(search_value).order_by(column_value_by_key => sort_value)
+    else 
+      users = User.all.order_by(column_value_by_key => sort_value)
+    end
+
+    paginated_users = users.page(number_page).per(records_per_page)
+
+    multi_level_array = []
+    paginated_users.each do |user|
+      multi_level_array << [
+        user.first_name,
+        user.last_name,
+        user.birthday,
+        user.address]
+    end
+
+    {
+      recordsTotal: users.to_a.size,
+      recordsFiltered: users.to_a.size,
+      data:  multi_level_array
+    }
+  end
+end
+
+
+
+=> {:recordsTotal=>29,
+ :recordsFiltered=>29,
+ :data=>
+  [["viacheslav", "karpenko", "02.11.1984", "Kyiv"],
+   ["Sergey", "Olefir", "11.02.1984", "Kyiv"],
+   ["Oleg", "Vinnik", "02.11.1984", "Kyiv"],
+   ["Illia", "Sotnik", "02.11.1984", "Cherkassy"],
+   ["Olaksandr", "Bohdan", "02.11.1984", "Cherkassy"],
+   ["John", "Sothik", "02.11.1984", "Cherkassy"],
+   ["Wiliam", "Glushenko", "02.11.1984", "Cherkassy"],
+   ["Kruso", "karpenko", "02.11.1984", "Cherkassy"],
+   ["Goliaf", "Olefir", "02.11.1984", "NY"],
+   ["Igor", "Vinnik", "02.11.1984", "Cherkassy"]]}
+
+
+
+
+Договiр 	1047936
+ПIБ 	МИРОНЕНКО АНАТОЛІЙ ВОЛОДИМИРОВИЧ
+Адреса 	М. КИЇВ,ВУЛ.ЗАМКОВЕЦЬКА БУД. 108 КВ. 27
+Телефон 	bz
+Логiн 	1047936
+Пароль 	0505486263
+Тип пiдкл. 	ethernet
+Винос/порт 	s1.axlip2.kv-7
+Тарифний план 	30W/100U
+МАС адреса 	
+FCEC.DA72.881A
+Статична IP(PPPoE) 	
+89.19.105.31
+
+050-548--6263
+трініті 6 значний номер між трініті з че

@@ -1,58 +1,152 @@
 class UserDatatable
-  def initialize(params)
-    @params = params
+  RECORDS_PER_PAGE = 10
+  attr_accessor :params
+
+  def number_page
+    @params[:start].to_i / 10
   end
 
-  def filtered_data
-    puts "#{}".red
-    puts "@params#{@params}\n".red
+  def search_value
+    @params['search']['value']
+  end
 
-    @search_value = @params['search']['value']
-    puts "@search_value-#{@search_value}-\n".red
-    @sort_value = @params['order']['0']['dir']
-    puts "@sort_value-#{@sort_value}-\n".red
-    @column_key = @params['order']['0']['column'].to_i + 1
-    puts "@params-#{@params}-\n".red
-    @column_value_by_key = User.fields.keys[@column_key]
-    puts "@column_value_by_key-#{@column_value_by_key}-\n".red
-    
-    
-    
-    if  @search_value
-       User.search(@search_value).order_by(@column_value_by_key => @sort_value.to_s)
-    else 
-      User.all.order_by(@column_value_by_key => @sort_value.to_s)
+  def sort_value
+    @params['order']['0']['dir']
+  end
+
+  def column_key
+    @params['order']['0']['column'].to_i+1
+  end
+
+  def column_value_by_key
+    User.fields.keys[column_key]
+  end
+
+  def users
+    if  search_value
+      User.search(search_value).order_by(column_value_by_key => sort_value)
+    else
+      User.all.order_by(column_value_by_key => sort_value)
     end
   end
-  
-  def paginated_data
-    puts "filtered_data#{filtered_data}-\n".green
-    @records_per_page = 10
-    @number_page = (@params[:start].to_i / 10) + 1
-    @paginated_data = filtered_data.page(@number_page).per(@records_per_page)
-    puts "filtered_data.page(@number_page).per(@records_per_page)#{filtered_data.page(@number_page).per(@records_per_page)}-\n".green
+
+  def paginated_users
+    users.page(number_page).per(RECORDS_PER_PAGE)
   end
-  
-  def array_builder
-    puts "paginated_data#{paginated_data}-\n".blue
+
+  def columns_builder
     @multi_level_array = []
-    @paginated_data.each do |user|
+    paginated_users.each do |user|
       @multi_level_array << [
         user.first_name,
         user.last_name,
         user.birthday,
-        user.address
-      ]
+        user.address]
     end
-    puts "@multi_level_array#{@multi_level_array}-\n".blue
   end
-  
-  def hash_buider
-    # binding.pry
-     {
-      recordsTotal: filtered_data.to_a.size,
-      recordsFiltered: filtered_data.to_a.size,
+
+  def data
+    {
+      recordsTotal: users.to_a.size,
+      recordsFiltered: users.to_a.size,
       data: @multi_level_array
     }
   end
+
+  def debug
+  puts "number_page - #{number_page}".green
+  puts "search_value - #{search_value}".green
+  puts "sort_value - #{sort_value}".green
+  puts "column_key - #{column_key}".green
+  puts "column_value_by_key - #{column_value_by_key}".green
+  puts "users - #{users.to_a}".green
+  puts "paginated_users - #{paginated_users.to_a}".green
+  puts "columns_builder - #{columns_builder.to_a}".green
+  puts "data - #{data.to_h}".green
+  puts "@multi_level_array - #{@multi_level_array}".yellow
+
 end
+end
+
+
+
+
+
+
+
+
+
+
+
+# 2
+# class UserDatatable
+#   def data=(params)
+#     number_page = (params[:start].to_i / 10) + 1
+#     records_per_page = 10
+#     search_value = params["search"]["value"]
+#     sort_value = params['order']['0']['dir']
+#     column_key = params['order']['0']['column'].to_i
+#     column_value_by_key = User.fields.keys[column_key]
+
+#     if  search_value.present?
+#       users = User.search(search_value).order_by(column_value_by_key => sort_value)
+#     else 
+#       users = User.all.order_by(column_value_by_key => sort_value)
+#     end
+
+#     paginated_users = users.page(number_page).per(records_per_page)
+
+#     multi_level_array = []
+#     paginated_users.each do |user|
+#       multi_level_array << [
+#         user.first_name,
+#         user.last_name,
+#         user.birthday,
+#         user.address]
+#     end
+
+#     {
+#       recordsTotal: users.to_a.size,
+#       recordsFiltered: users.to_a.size,
+#       data:  multi_level_array
+#     }
+#   end
+# end
+
+
+
+
+# 1
+# class UserDatatable
+#   def self.data(params)
+#     number_page = (params[:start].to_i / 10) + 1
+#     records_per_page = 10
+#     search_value = params["search"]["value"]
+#     sort_value = params['order']['0']['dir']
+#     column_key = params['order']['0']['column'].to_i
+#     column_value_by_key = User.fields.keys[column_key]
+
+#     if  search_value.present?
+#       users = User.search(search_value).order_by(column_value_by_key => sort_value)
+#     else 
+#       users = User.all.order_by(column_value_by_key => sort_value)
+#     end
+
+#     paginated_users = users.page(number_page).per(records_per_page)
+
+#     multi_level_array = []
+#     paginated_users.each do |user|
+#       multi_level_array << [
+#         user.first_name,
+#         user.last_name,
+#         user.birthday,
+#         user.address]
+#     end
+
+#     {
+#       recordsTotal: users.to_a.size,
+#       recordsFiltered: users.to_a.size,
+#       data:  multi_level_array
+#     }
+#   end
+# end
