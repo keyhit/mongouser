@@ -23,7 +23,7 @@ address = %w[Kyiv Kyiv Kyiv Cherkassy Cherkassy Cherkassy Cherkassy
              Vinnitsia Kyiv Cherkassy Cherkassy]
 
 counter = 0
-29.times do
+28.times do
   new_user = User.new(
     first_name: first_name[counter],
     last_name: last_name[counter],
